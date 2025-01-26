@@ -34,6 +34,12 @@
     position: relative;
 }
 
+.spot image {
+    clip-path: circle(60px at center);
+    transition: all 0.2s ease-out;
+    object-fit: cover;
+}
+
 .spot circle {
     fill: white;
     stroke: var(--primary-blue);
@@ -41,27 +47,23 @@
     transition: all 0.2s ease-out;
 }
 
-.spot image {
-    clip-path: circle(28px at center);
-    transition: all 0.2s ease-out;
-}
-
 .spot:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .spot:hover circle {
     stroke-width: 4;
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.2));
 }
 
 .spot-details {
     position: fixed;
     display: none;
     background: white;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 20px;
+    border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    width: 280px;
+    width: 300px;
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.2s ease;

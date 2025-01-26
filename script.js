@@ -57,13 +57,39 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // 游客留言功能
-document.querySelector('.message-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const input = this.querySelector('input');
-    if (input.value.trim()) {
-        alert('感谢您的留言！我们会认真考虑您的建议。');
-        input.value = '';
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('guestbook-form');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // 防止表单默认提交行为
+
+        const name = document.getElementById('name').value;
+        const message = document.getElementById('message').value;
+
+        // 发送留言到网站拥有者（这里可以使用 AJAX 或其他方式）
+        fetch('https://your-server-endpoint.com/send-message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, message })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('留言已发送！');
+            } else {
+                alert('发送失败，请重试。');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('发送失败，请重试。');
+        });
+
+        // 清空表单
+        form.reset();
+    });
 });
 
 // 搜索功能
