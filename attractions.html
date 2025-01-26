@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泉州景点推荐</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="attractions.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="attractions.html">必游景点</a></li>
+                <li><a href="#culture">文化特色</a></li>
+                <li><a href="#food">美食推荐</a></li>
+                <li><a href="#guide">旅游攻略</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>泉州旅游路线</h1>
+        <div class="travel-route">
+            <svg class="route-path" viewBox="0 0 1000 400">
+                <!-- 曲线路径 -->
+                <path class="route-line" d="M100,200 C300,100 700,300 900,200" />
+                
+                <!-- 景点标记点 -->
+                <g class="spot" data-spot="kaiyuansi">
+                    <circle cx="100" cy="200" r="30" />
+                    <image x="70" y="170" width="60" height="60" href="images/kaiyuansi.jpg" />
+                </g>
+                
+                <g class="spot" data-spot="qingjingsi">
+                    <circle cx="400" cy="150" r="30" />
+                    <image x="370" y="120" width="60" height="60" href="images/qingjingsi.jpg" />
+                </g>
+                
+                <g class="spot" data-spot="guancheng">
+                    <circle cx="700" cy="250" r="30" />
+                    <image x="670" y="220" width="60" height="60" href="images/cityview.jpg" />
+                </g>
+                
+                <g class="spot" data-spot="zhongshan">
+                    <circle cx="900" cy="200" r="30" />
+                    <image x="870" y="170" width="60" height="60" href="images/zhongshan.jpg" />
+                </g>
+            </svg>
+            
+            <!-- 景点详情卡片 -->
+            <div class="spot-details" id="kaiyuansi-details">
+                <h3>开元寺</h3>
+                <p>始建于唐代的千年古刹，以双塔闻名。寺内保存了大量的历史文物和建筑，是泉州重要的文化地标。</p>
+            </div>
+            
+            <div class="spot-details" id="qingjingsi-details">
+                <h3>清净寺</h3>
+                <p>建于唐代的伊斯兰教寺院，是中国现存最古老的阿拉伯式建筑，见证了泉州作为海上丝绸之路重要港口的历史。</p>
+            </div>
+            
+            <div class="spot-details" id="guancheng-details">
+                <h3>泉州古城</h3>
+                <p>千年古城，保存了众多历史建筑和文化遗迹，街巷间还保留着浓郁的闽南风情。</p>
+            </div>
+            
+            <div class="spot-details" id="zhongshan-details">
+                <h3>中山路</h3>
+                <p>泉州最繁华的商业街，既有现代时尚气息，又保留着传统闽南建筑风格，是购物休闲的理想去处。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 泉州旅游网 版权所有</p>
+    </footer>
+    <script src="attractions.js"></script>
+</body>
+</html>
