@@ -113,26 +113,94 @@
     color: #333;
 }
 
-/* 响应式设计 */
+/* 响应式设计增强 */
 @media (max-width: 1024px) {
     .travel-route {
         max-width: 800px;
+    }
+    
+    .spot circle {
+        r: 40;
+    }
+
+    .spot image {
+        width: 80px;
+        height: 80px;
+        transform: translate(-40px, -40px);
+        clip-path: circle(40px at center);
     }
 }
 
 @media (max-width: 768px) {
     .travel-route {
-        max-width: 600px;
+        max-width: 100%;
         padding: 10px;
+        margin: 10px;
+    }
+
+    .route-path {
+        height: auto;
+        min-height: 400px;
     }
 
     .spot-details {
-        width: 250px;
-        padding: 12px;
+        width: 80%;
+        max-width: 300px;
+        padding: 15px;
         position: fixed;
         left: 50% !important;
         transform: translateX(-50%);
         bottom: 20px;
+        top: auto !important;
+        z-index: 1000;
+    }
+
+    .spot-details::before {
+        display: none;
+    }
+
+    .spot circle {
+        r: 30;
+    }
+
+    .spot image {
+        width: 60px;
+        height: 60px;
+        transform: translate(-30px, -30px);
+        clip-path: circle(30px at center);
+    }
+
+    .route-line {
+        stroke-width: 3;
+    }
+
+    .spot-details h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+    }
+
+    .spot-details p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 480px) {
+    .travel-route {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .route-path {
+        min-height: 300px;
+    }
+
+    .spot-details {
+        width: 90%;
+        padding: 12px;
+        max-height: 40vh;
+        overflow-y: auto;
     }
 
     .spot circle {
@@ -142,44 +210,58 @@
     .spot image {
         width: 50px;
         height: 50px;
-        x: -25px;
-        y: -25px;
-        clip-path: circle(23px at center);
-    }
-}
-
-@media (max-width: 480px) {
-    .travel-route {
-        max-width: 100%;
-        padding: 5px;
-    }
-
-    .spot-details {
-        width: 90%;
-        max-width: 300px;
-    }
-
-    .spot circle {
-        r: 20;
-    }
-
-    .spot image {
-        width: 40px;
-        height: 40px;
-        x: -20px;
-        y: -20px;
-        clip-path: circle(18px at center);
+        transform: translate(-25px, -25px);
+        clip-path: circle(25px at center);
     }
 
     .route-line {
-        stroke-width: 3;
+        stroke-width: 2;
+    }
+
+    .spot-details h3 {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .spot-details p {
+        font-size: 12px;
+    }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) {
+    .spot {
+        touch-action: manipulation;
+    }
+
+    .spot:active {
+        transform: scale(1.1);
+    }
+
+    .spot-details {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .spot-details.active {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+
+    .spot-details:not(.active) {
+        transform: translateX(-50%) translateY(100%);
+        opacity: 0;
     }
 }
 
 /* 适配横屏模式 */
 @media (orientation: landscape) and (max-height: 500px) {
     .spot-details {
-        max-height: 80vh;
+        max-height: 70vh;
         overflow-y: auto;
+        bottom: 10px;
+    }
+
+    .route-path {
+        min-height: 250px;
     }
 }

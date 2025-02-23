@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const spots = document.querySelectorAll('.spot');
     let activeDetail = null;
+    let touchStartTime;
+    let isTouchMove = false;
 
     function positionDetails(spot, details) {
         // 获取SVG元素的位置和大小
@@ -13,90 +15,124 @@ document.addEventListener('DOMContentLoaded', function() {
         const cy = parseFloat(circle.getAttribute('cy'));
         
         // 计算圆圈在页面中的实际位置
-        const spotX = svgRect.left + (cx * svgRect.width / 1000);
+        const spotX = svgRect.left + (cx * svgRect.width / 1200);
         const spotY = svgRect.top + (cy * svgRect.height / 400);
 
+        // 检查是否是移动设备
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            // 移动设备上固定在底部
+            details.style.left = '50%';
+            details.style.transform = 'translateX(-50%)';
+            details.style.bottom = '20px';
+            details.style.top = 'auto';
+        } else {
         // 计算详情框的位置
         let left = spotX - (details.offsetWidth / 2);
-        let top = spotY - details.offsetHeight - 20; // 默认显示在圆圈上方
+            let top = spotY - details.offsetHeight - 20;
 
-        // 检查是否超出视口左右边界
+            // 检查是否超出视口边界
         const viewportWidth = window.innerWidth;
         if (left < 10) {
-            left = 10; // 距离左边界10px
+                left = 10;
         } else if (left + details.offsetWidth > viewportWidth - 10) {
-            left = viewportWidth - details.offsetWidth - 10; // 距离右边界10px
+                left = viewportWidth - details.offsetWidth - 10;
         }
 
         // 如果上方空间不足，则显示在下方
         if (top < 10) {
-            top = spotY + 40; // 显示在圆圈下方
+                top = spotY + 40;
             details.classList.add('bottom');
         } else {
             details.classList.remove('bottom');
         }
 
-        // 设置位置
         details.style.left = `${left}px`;
-        details.style.top = `${top + window.scrollY}px`; // 添加页面滚动偏移
+            details.style.top = `${top + window.scrollY}px`;
+        }
     }
 
-    spots.forEach(spot => {
+    // 关闭所有详情框
+    function closeAllDetails() {
+        if (activeDetail) {
+            activeDetail.classList.remove('active');
+            activeDetail = null;
+        }
+    }
+
+    // 处理点击/触摸事件
+    function handleSpotInteraction(spot, event) {
         const spotName = spot.getAttribute('data-spot');
         const details = document.getElementById(`${spotName}-details`);
 
-        // 鼠标进入圆圈
-        spot.addEventListener('mouseenter', () => {
-            // 隐藏之前显示的详情
-            if (activeDetail && activeDetail !== details) {
-                activeDetail.classList.remove('active');
-            }
-
-            // 先设置为可见但透明，以便获取正确的尺寸
+        if (activeDetail === details) {
+            closeAllDetails();
+        } else {
+            closeAllDetails();
             details.style.opacity = '0';
             details.classList.add('active');
-
-            // 计算并设置位置
             positionDetails(spot, details);
-
-            // 显示详情框
             requestAnimationFrame(() => {
                 details.style.opacity = '1';
             });
-            
             activeDetail = details;
-        });
+        }
 
-        // 鼠标离开圆圈
-        spot.addEventListener('mouseleave', (e) => {
-            // 检查鼠标是否移动到详情框上
-            const toElement = e.relatedTarget;
-            if (!details.contains(toElement)) {
-                details.classList.remove('active');
-                activeDetail = null;
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    spots.forEach(spot => {
+        // 触摸事件处理
+        spot.addEventListener('touchstart', (e) => {
+            touchStartTime = Date.now();
+            isTouchMove = false;
+        }, { passive: true });
+
+        spot.addEventListener('touchmove', () => {
+            isTouchMove = true;
+        }, { passive: true });
+
+        spot.addEventListener('touchend', (e) => {
+            if (!isTouchMove && (Date.now() - touchStartTime) < 300) {
+                handleSpotInteraction(spot, e);
             }
         });
 
-        // 鼠标离开详情框
-        details.addEventListener('mouseleave', () => {
-            details.classList.remove('active');
-            activeDetail = null;
+        // 鼠标事件处理
+        spot.addEventListener('click', (e) => {
+            handleSpotInteraction(spot, e);
         });
     });
 
-    // 监听窗口大小变化，重新定位活动的详情框
-    window.addEventListener('resize', () => {
-        if (activeDetail) {
-            const activeSpot = document.querySelector(`[data-spot="${activeDetail.id.replace('-details', '')}"]`);
-            positionDetails(activeSpot, activeDetail);
+    // 点击其他区域关闭详情框
+    document.addEventListener('click', (e) => {
+        if (activeDetail && !e.target.closest('.spot') && !e.target.closest('.spot-details')) {
+            closeAllDetails();
         }
     });
 
-    // 监听页面滚动，重新定位活动的详情框
-    window.addEventListener('scroll', () => {
+    // 监听窗口大小变化
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
         if (activeDetail) {
             const activeSpot = document.querySelector(`[data-spot="${activeDetail.id.replace('-details', '')}"]`);
             positionDetails(activeSpot, activeDetail);
         }
+        }, 100);
+    });
+
+    // 监听页面滚动
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+        if (activeDetail) {
+            const activeSpot = document.querySelector(`[data-spot="${activeDetail.id.replace('-details', '')}"]`);
+            positionDetails(activeSpot, activeDetail);
+        }
+        }, 100);
     });
 });
+
