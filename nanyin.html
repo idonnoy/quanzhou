@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南音 - 泉州非物质文化遗产</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="culture-detail.css">
+    <link rel="stylesheet" href="map-style.css">
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=9xwea5LvcazON0hdXu1UjAGSrjZaGiZl"></script>
+    <script src="map.js"></script>
+    <style>
+        /* 导航栏样式 */
+        header {
+            background-color: #2196F3;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-right: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* 地址链接样式 */
+        .address-link {
+            color: #0066cc;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .address-link:hover {
+            color: #003366;
+            background-color: #f0f7ff;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="attractions.html">景点推荐</a></li>
+                <li><a href="culture.html">文化特色</a></li>
+                <li><a href="food.html">美食推荐</a></li>
+                <li><a href="travel.html">旅游攻略</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="culture-detail">
+        <h1>南音</h1>
+        <div class="detail-content">
+            <div class="detail-text">
+                <h2>文化介绍</h2>
+                <p>南音是福建省最古老的传统乐种，被联合国教科文组织列入人类非物质文化遗产代表作之一，是国家级非物质文化遗产之一。它是中国音乐史上的活化石之称，其音乐悠久的历史渊源自古代泉州，至今仍在传承演绎。</p>
+
+                <h2>演出信息</h2>
+                <ul>
+                    <li><strong>演出地点：</strong><span class="address-link" data-address="南音176号" data-coords='{"lng": 118.589833, "lat": 24.908789}'>南音176号</span></li>
+                    <li><strong>演出时间：</strong>每周五、周六、周日</li>
+                    <li><strong>场次：</strong>19:30-20:30，20:30-21:30</li>
+                    <li><strong>票价：</strong>68元（含茶水位）</li>
+                </ul>
+
+                <h2>特色体验</h2>
+                <p>在这里，您不仅可以欣赏到精彩的南音表演，还可以品尝到特色茶点。我们为游客提供茶水服务，茶水座位已合计68元。演出时间约一小时，建议提前预约座位。虽然票价略显昂贵，却也物有所值。</p>
+
+                <h2>交通信息</h2>
+                <p><strong>周边交通：</strong></p>
+                <ul>
+                    <li><strong>公交车：</strong>38路至"<span class="address-link" data-address="南音站" data-coords='{"lng": 118.589945, "lat": 24.908890}'>南音站</span>"下车</li>
+                    <li><strong>地铁：</strong>K40路至"<span class="address-link" data-address="南音地铁站" data-coords='{"lng": 118.590056, "lat": 24.908678}'>南音地铁站</span>"下车</li>
+                    <li><strong>自驾：</strong>可停放在<span class="address-link" data-address="南音停车场" data-coords='{"lng": 118.589722, "lat": 24.908567}'>南音停车场</span></li>
+                </ul>
+
+                <h2>预约信息</h2>
+                <p>演出需提前预约，您可以通过以下方式联系我们：</p>
+                <ul>
+                    <li>电话：1726783</li>
+                    <li>在线预约平台</li>
+                </ul>
+            </div>
+
+            <div class="map-section">
+                <h2>到达这里</h2>
+                <div class="map-controls">
+                    <input type="text" id="start-location" class="location-input" placeholder="请输入起点位置">
+                    <button id="use-current-location" class="route-btn">使用当前位置</button>
+                    <div class="transport-options">
+                        <button class="transport-btn active" data-mode="driving">驾车</button>
+                        <button class="transport-btn" data-mode="transit">公交</button>
+                        <button class="transport-btn" data-mode="walking">步行</button>
+                        <button class="transport-btn" data-mode="riding">骑行</button>
+                    </div>
+                    <button id="plan-route" class="route-btn">规划路线</button>
+                </div>
+                <div id="map-container" class="map-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 泉州旅游指南</p>
+    </footer>
+
+    <script>
+        // 南音演出地点坐标
+        const destination = {
+            lng: 118.589833,
+            lat: 24.908789
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 初始化地图模块
+                if (!MapModule.init('map-container', destination, '南音176号')) {
+                    console.error('地图初始化失败');
+                    alert('地图加载失败，请刷新页面重试');
+                    return;
+                }
+                
+                // 为所有地址链接添加点击事件
+                document.querySelectorAll('.address-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        try {
+                            const coords = JSON.parse(this.dataset.coords);
+                            const address = this.dataset.address;
+                            // 更新地图目的地
+                            if (!MapModule.updateDestination(coords, address)) {
+                                console.error('更新地图目的地失败');
+                                alert('更新目的地失败，请重试');
+                            }
+                        } catch (error) {
+                            console.error('处理地址点击事件错误:', error);
+                            alert('更新目的地时发生错误，请重试');
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('初始化错误:', error);
+                alert('地图功能初始化失败，请刷新页面重试');
+            }
+        });
+    </script>
+</body>
+</html> 

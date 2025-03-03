@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>木偶戏 - 泉州非物质文化遗产</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="culture-detail.css">
+    <link rel="stylesheet" href="map-style.css">
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=9xwea5LvcazON0hdXu1UjAGSrjZaGiZl"></script>
+    <script src="map.js"></script>
+    <style>
+        /* 导航栏样式 */
+        header {
+            background-color: #2196F3;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-right: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        .address-link {
+            color: #0066cc;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .address-link:hover {
+            color: #003366;
+        }
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="attractions.html">景点推荐</a></li>
+                <li><a href="culture.html">文化特色</a></li>
+                <li><a href="food.html">美食推荐</a></li>
+                <li><a href="travel.html">旅游攻略</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="culture-detail">
+        <h1>木偶戏</h1>
+        <div class="detail-content">
+            <div class="detail-text">
+                <h2>文化介绍</h2>
+                <p>泉州木偶戏是中国木偶戏表演艺术的主要支系之一，并被列入国家级非物质文化遗产名录。它是中国现存最古老的剧种之一，千丝万缕的提线木偶，一提一放，再从白发老翁到垂髫稚童，无不栩栩如生，令人叹为观止。</p>
+
+                <h2>演出地点</h2>
+                <h3>1. 泉州木偶剧院演出</h3>
+                <ul>
+                    <li>地址：<span class="address-link" data-address="泉州木偶剧院" data-coords='{"lng": 118.590521, "lat": 24.907654}'>泉山路泉州南音木偶剧社北侧院内</span></li>
+                    <li>演出剧目：《小沙弥》《山伯临绛》等经典剧目</li>
+                    <li>时长：1小时（含互动环节，适合带孩子的家长）</li>
+                    <li>票价：30/50/80元</li>
+                </ul>
+
+                <h3>2. 泉州影视城木偶《泉州》</h3>
+                <ul>
+                    <li>地址：<span class="address-link" data-address="泉州影视城" data-coords='{"lng": 118.591234, "lat": 24.908123}'>老城区楼顶层泉州影视院</span></li>
+                    <li>演出剧目：《小和尚化缘》等趣味剧目（含南音木偶秀）</li>
+                    <li>时长：1小时（含互动环节，适合带孩子的家长）</li>
+                    <li>票价：39/79/139元</li>
+                </ul>
+
+                <h3>3. 泉州方言馆</h3>
+                <ul>
+                    <li>演出剧目：以闽南安语为主</li>
+                    <li>时长：10分钟（随时都可以参观游客）</li>
+                    <li>地点：<span class="address-link" data-address="泉州方言馆" data-coords='{"lng": 118.589876, "lat": 24.908345}'>老街区内泉州方言馆</span></li>
+                    <li>票价：免费</li>
+                </ul>
+
+                <h3>4. 木偶主题馆</h3>
+                <ul>
+                    <li>演出剧目：《小沙弥》《山伯临绛》等</li>
+                    <li>时长：总计30分钟（演出20分钟，互动20分钟，内容较为丰富，适合各类型的游客）</li>
+                    <li>地址：<span class="address-link" data-address="通淮关木偶馆" data-coords='{"lng": 118.590789, "lat": 24.908901}'>通淮关木偶馆</span></li>
+                    <li>票价：78元</li>
+                </ul>
+
+                <h2>预约信息</h2>
+                <p>所有演出均需提前预约，您可以直接通过我们的平台进行预约。</p>
+
+                <h2>特色体验</h2>
+                <p>观看木偶戏的时候，我们把观众安排在最佳的观剧状态下，让观众能为木偶师营造一个专注的演出环境。这里的布景和文化，也是装点的古色古香，让我们好像回到了自己的童年时光。每一个音彩、每一个身段，都是木偶师们在给我们讲述故事。这就是泉州木偶戏的一个特点的实际感受。</p>
+            </div>
+
+            <div class="map-section">
+                <h2>到达这里</h2>
+                <div class="map-controls">
+                    <input type="text" id="start-location" class="location-input" placeholder="请输入起点位置">
+                    <button id="use-current-location" class="route-btn">使用当前位置</button>
+                    <div class="transport-options">
+                        <button class="transport-btn active" data-mode="driving">驾车</button>
+                        <button class="transport-btn" data-mode="transit">公交</button>
+                        <button class="transport-btn" data-mode="walking">步行</button>
+                        <button class="transport-btn" data-mode="riding">骑行</button>
+                    </div>
+                    <button id="plan-route" class="route-btn">规划路线</button>
+                </div>
+                <div id="map-container" class="map-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 泉州旅游指南</p>
+    </footer>
+
+    <script>
+        // 泉州木偶剧院坐标
+        const destination = {
+            lng: 118.590521,
+            lat: 24.907654
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 初始化地图模块
+                if (!MapModule.init('map-container', destination, '泉州木偶剧院')) {
+                    console.error('地图初始化失败');
+                    alert('地图加载失败，请刷新页面重试');
+                }
+            } catch (error) {
+                console.error('初始化错误:', error);
+                alert('地图功能初始化失败，请刷新页面重试');
+            }
+        });
+    </script>
+</body>
+</html> 

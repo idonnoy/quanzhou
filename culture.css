@@ -111,6 +111,23 @@
     color: var(--text-dark);
 }
 
+.detail-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    background-color: #e67e22;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.detail-link:hover {
+    background-color: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 /* 响应式设计 */
 @media (max-width: 1024px) {
     .carousel-container {

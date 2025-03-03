@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送王船 - 泉州非物质文化遗产</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="culture-detail.css">
+    <link rel="stylesheet" href="map-style.css">
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=9xwea5LvcazON0hdXu1UjAGSrjZaGiZl"></script>
+    <script src="map.js"></script>
+    <style>
+        /* 导航栏样式 */
+        header {
+            background-color: #2196F3;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-right: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        .address-link {
+            color: #0066cc;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .address-link:hover {
+            color: #003366;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="attractions.html">景点推荐</a></li>
+                <li><a href="culture.html">文化特色</a></li>
+                <li><a href="food.html">美食推荐</a></li>
+                <li><a href="travel.html">旅游攻略</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="culture-detail">
+        <h1>送王船</h1>
+        <div class="detail-content">
+            <div class="detail-text">
+                <h2>文化介绍</h2>
+                <p>送王船是闽南地区最具代表性的民俗活动之一，是国家级非物质文化遗产。2020年12月17日，送王船被联合国教科文组织列入人类非物质文化遗产代表作名录。送王船广泛流传于中国东南沿海地区，尤其在闽南地区影响深远，至今已经拥有数百年的历史。</p>
+
+                <h2>活动特色</h2>
+                <p>送王船习俗在闽南广泛流传，包括山歌、石狮、蜈蚣阵、跑旱船、送王等大戏，一般在农历七月举行一次。仪式通常在农历固定的农历七月等方面的某一天进行。仪式形式包括一系列程序：由木匠制成，或用纸扎成，请王爷神像入住其中。仪式内容丰富，实际上具有很高的文化价值。</p>
+
+                <h2>仪式流程</h2>
+                <ul>
+                    <li>造船：精心制作木质王船</li>
+                    <li>请王：举行隆重仪式迎请王爷上船</li>
+                    <li>巡境：王船在街道巡游，驱邪祈福</li>
+                    <li>送王：将王船送至海边焚烧，完成仪式</li>
+                </ul>
+
+                <h2>活动地点</h2>
+                <p>地址：<span class="address-link" data-address="送王船民俗文化展示馆" data-coords='{"lng": 118.595123, "lat": 24.912456}'>泉州市海滨路648号（送王船民俗文化展示馆）</span></p>
+                <p>周边景点：
+                    <span class="address-link" data-address="海外交通史博物馆" data-coords='{"lng": 118.595678, "lat": 24.912789}'>海外交通史博物馆</span>、
+                    <span class="address-link" data-address="泉州非物质文化遗产馆" data-coords='{"lng": 118.595890, "lat": 24.912567}'>泉州非物质文化遗产馆</span>、
+                    <span class="address-link" data-address="闽南文化生态园" data-coords='{"lng": 118.596123, "lat": 24.912345}'>闽南文化生态园</span>
+                </p>
+
+                <h2>参观信息</h2>
+                <ul>
+                    <li>时间：时间根据活动而定，如果有大型泉州非物质文化遗产展演，会停留较长时间，参观时间预计2小时</li>
+                    <li>票价：免费</li>
+                </ul>
+
+                <h2>交通信息</h2>
+                <p>周边交通：</p>
+                <ul>
+                    <li>公交：128路</li>
+                    <li>地铁：K38路</li>
+                    <li>出租车：约48元</li>
+                    <li>共享单车：约68元</li>
+                </ul>
+
+                <h2>特别提示</h2>
+                <p>入场需着装整齐，我们会欢迎您通过正常途径了解。入场前不需要预约，您可以通过泉州时光、泉州非遗保护中心文化馆等直播平台了解预约信息。我们非常希望您能够来这场活动感受，让我们共同感受这种民俗文化的魅力。</p>
+            </div>
+
+            <div class="map-section">
+                <h2>到达这里</h2>
+                <div class="map-controls">
+                    <input type="text" id="start-location" class="location-input" placeholder="请输入起点位置">
+                    <button id="use-current-location" class="route-btn">使用当前位置</button>
+                    <div class="transport-options">
+                        <button class="transport-btn active" data-mode="driving">驾车</button>
+                        <button class="transport-btn" data-mode="transit">公交</button>
+                        <button class="transport-btn" data-mode="walking">步行</button>
+                        <button class="transport-btn" data-mode="riding">骑行</button>
+                    </div>
+                    <button id="plan-route" class="route-btn">规划路线</button>
+                </div>
+                <div id="map-container" class="map-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 泉州旅游指南</p>
+    </footer>
+
+    <script>
+        // 默认目的地（送王船民俗文化展示馆）
+        let destination = {
+            lng: 118.595123,
+            lat: 24.912456
+        };
+        let destinationName = '送王船民俗文化展示馆';
+        
+        // 添加地址点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 初始化地图模块
+                if (!MapModule.init('map-container', destination, destinationName)) {
+                    console.error('地图初始化失败');
+                    alert('地图加载失败，请刷新页面重试');
+                    return;
+                }
+                
+                // 为所有地址链接添加点击事件
+                document.querySelectorAll('.address-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        try {
+                            const coords = JSON.parse(this.dataset.coords);
+                            const address = this.dataset.address;
+                            // 更新全局变量
+                            destination = coords;
+                            destinationName = address;
+                            // 更新地图目的地
+                            if (!MapModule.updateDestination(coords, address)) {
+                                console.error('更新地图目的地失败');
+                                alert('更新目的地失败，请重试');
+                            }
+                        } catch (error) {
+                            console.error('处理地址点击事件错误:', error);
+                            alert('更新目的地时发生错误，请重试');
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('初始化错误:', error);
+                alert('地图功能初始化失败，请刷新页面重试');
+            }
+        });
+    </script>
+</body>
+</html> 

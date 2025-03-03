@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>惠安女 - 泉州非物质文化遗产</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="culture-detail.css">
+    <link rel="stylesheet" href="map-style.css">
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=9xwea5LvcazON0hdXu1UjAGSrjZaGiZl"></script>
+    <script src="map.js"></script>
+    <style>
+        /* 导航栏样式 */
+        header {
+            background-color: #2196F3;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-right: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* 地址链接样式 */
+        .address-link {
+            color: #0066cc;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .address-link:hover {
+            color: #003366;
+            background-color: #f0f7ff;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="attractions.html">景点推荐</a></li>
+                <li><a href="culture.html">文化特色</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="culture-detail">
+        <h1>惠安女</h1>
+        <div class="detail-content">
+            <div class="detail-text">
+                <h2>文化介绍</h2>
+                <p>惠安女是国家级非物质文化遗产名录中的特色民俗，被誉为福建省最具特色的民俗风情之一。</p>
+
+                <h2>文化特色</h2>
+                <p>惠安女主要指生活在福建泉州惠安县惠东与岛屿及其附近沿海一带的女性群体，又称"蚶江女"或"石雕女"。作为女性劳动者的代表，惠安女的形象在各种视频和报道位置上成圈和被大量传播的共同志向。惠安女的服饰不仅为世人所知，她们的服饰也很被大家看重。惠安女的特色不仅如此，她们勤劳、协作、装束都很讲究，让人感受到了她们的美丽。如今，惠安女依然作为泉州最具特色的旅游资源之一，展现出坚韧不拔且勤劳朴实的性格特征。</p>
+
+                <h2>参观地点</h2>
+                <p><strong>地址：</strong><span class="address-link" data-address="惠女民俗园" data-coords='{"lng": 118.591234, "lat": 24.909876}'>惠女民俗园</span></p>
+                <p><strong>开放时间：</strong>9:00-17:00（周一至周日）</p>
+                <p><strong>门票：</strong>30元/人</p>
+
+                <h2>交通信息</h2>
+                <p><strong>到达方式：</strong></p>
+                <ul>
+                    <li><strong>公交：</strong>28路、302路至"<span class="address-link" data-address="惠女民俗园站" data-coords='{"lng": 118.591345, "lat": 24.909987}'>惠女民俗园站</span>"下车</li>
+                    <li><strong>自驾：</strong>可停放在<span class="address-link" data-address="惠女民俗园停车场" data-coords='{"lng": 118.591456, "lat": 24.909765}'>惠女民俗园停车场</span></li>
+                </ul>
+
+                <h2>购物信息</h2>
+                <p>在当地商城可以购买惠安女服饰，每套价格在30-60元不等。当地商家经营正常原创服饰，主要销售高档或者定制竞销的店铺，欢迎适时光临。如发现问题，我们会及时上报泉州市场监督管理局等部门进行调查。我们也会收集证据，如果是假冒，我们会及时处理，并且感谢您一同维护良好的购物环境。</p>
+
+                <h2>特别提示</h2>
+                <p>希望您在欣赏美景的同时，也要尊重她们的服饰文化，不要在购买的服装上面做出不当的行为，这样会让人感到不适。</p>
+                <p>也希望您在游览的过程中，能感受到惠安女的精神态度，能感受到劳动者的勤劳朴实然后有一抹温柔的强大，这样的精神是我们需要的。</p>
+            </div>
+
+            <div class="map-section">
+                <h2>到达这里</h2>
+                <div class="map-controls">
+                    <input type="text" id="start-location" class="location-input" placeholder="请输入起点位置">
+                    <button id="use-current-location" class="route-btn">使用当前位置</button>
+                    <div class="transport-options">
+                        <button class="transport-btn active" data-mode="driving">驾车</button>
+                        <button class="transport-btn" data-mode="transit">公交</button>
+                        <button class="transport-btn" data-mode="walking">步行</button>
+                        <button class="transport-btn" data-mode="riding">骑行</button>
+                    </div>
+                    <button id="plan-route" class="route-btn">规划路线</button>
+                </div>
+                <div id="map-container" class="map-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 泉州旅游指南</p>
+    </footer>
+
+    <script>
+        // 惠女民俗园坐标
+        const destination = {
+            lng: 118.591234,
+            lat: 24.909876
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 初始化地图模块
+                if (!MapModule.init('map-container', destination, '惠女民俗园')) {
+                    console.error('地图初始化失败');
+                    alert('地图加载失败，请刷新页面重试');
+                    return;
+                }
+                
+                // 为所有地址链接添加点击事件
+                document.querySelectorAll('.address-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        try {
+                            const coords = JSON.parse(this.dataset.coords);
+                            const address = this.dataset.address;
+                            // 更新地图目的地
+                            if (!MapModule.updateDestination(coords, address)) {
+                                console.error('更新地图目的地失败');
+                                alert('更新目的地失败，请重试');
+                            }
+                        } catch (error) {
+                            console.error('处理地址点击事件错误:', error);
+                            alert('更新目的地时发生错误，请重试');
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('初始化错误:', error);
+                alert('地图功能初始化失败，请刷新页面重试');
+            }
+        });
+    </script>
+</body>
+</html> 

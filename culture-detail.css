@@ -1,0 +1,139 @@
+:root {
+    --primary-blue: #1e88e5;
+    --accent-red: #e53935;
+    --text-dark: #333;
+    --text-light: #666;
+    --background-light: #f5f5f5;
+}
+
+.culture-detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.culture-detail h1 {
+    text-align: center;
+    color: var(--primary-blue);
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.culture-detail h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-red);
+    margin: 20px auto 0;
+}
+
+.detail-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.detail-text {
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.detail-text h2 {
+    color: var(--primary-blue);
+    font-size: 1.8em;
+    margin: 30px 0 20px;
+}
+
+.detail-text p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.detail-text ul {
+    list-style: none;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.detail-text li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.detail-text li::before {
+    content: '•';
+    color: var(--accent-red);
+    position: absolute;
+    left: 0;
+    font-size: 1.2em;
+}
+
+.detail-images {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.detail-image {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.detail-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.detail-image:hover img {
+    transform: scale(1.05);
+}
+
+.image-caption {
+    text-align: center;
+    color: var(--text-light);
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .culture-detail {
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-content {
+        grid-template-columns: 1fr;
+    }
+
+    .culture-detail h1 {
+        font-size: 2em;
+    }
+
+    .detail-text h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .culture-detail {
+        padding: 20px 10px;
+    }
+
+    .culture-detail h1 {
+        font-size: 1.8em;
+    }
+
+    .detail-text {
+        font-size: 0.9em;
+    }
+} 

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开元寺 - 泉州非物质文化遗产</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="culture-detail.css">
+    <link rel="stylesheet" href="map-style.css">
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=9xwea5LvcazON0hdXu1UjAGSrjZaGiZl"></script>
+    <script src="map.js"></script>
+    <style>
+        .address-link {
+            color: #0066cc;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .address-link:hover {
+            color: #003366;
+        }
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+        /* 导航栏样式 */
+        header {
+            background-color: #2196F3;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-right: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="attractions.html">景点推荐</a></li>
+                <li><a href="culture.html">文化特色</a></li>
+                <li><a href="food.html">美食推荐</a></li>
+                <li><a href="travel.html">旅游攻略</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="culture-detail">
+        <h1>开元寺</h1>
+        <div class="detail-content">
+            <div class="detail-text">
+                <h2>寺院简介</h2>
+                <p>泉州开元寺始建于唐代，是中国著名的古刹之一。寺内保存有众多珍贵的文物古迹，其中以双子塔最为著名。开元寺不仅是一座重要的佛教寺院，也是研究唐宋建筑艺术的重要场所。</p>
+
+                <h2>主要景点</h2>
+                <ul>
+                    <li>双子塔：
+                        <ul>
+                            <li>建于南宋年间</li>
+                            <li>高48.24米</li>
+                            <li>为砖木结构仿木塔</li>
+                        </ul>
+                    </li>
+                    <li>大雄宝殿：
+                        <ul>
+                            <li>建于明代</li>
+                            <li>面阔七间，进深五间</li>
+                            <li>殿内供奉释迦牟尼佛像</li>
+                        </ul>
+                    </li>
+                    <li>天王殿：
+                        <ul>
+                            <li>建于清代</li>
+                            <li>供奉四大天王</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2>参观信息</h2>
+                <p>地址：<span class="address-link" data-address="泉州开元寺" data-coords='{"lng": 118.592345, "lat": 24.908765}'>泉州市鲤城区开元路</span></p>
+                <p>开放时间：7:30-17:30</p>
+                <p>门票：25元/人</p>
+
+                <h2>交通信息</h2>
+                <p>到达方式：</p>
+                <ul>
+                    <li>公交：3路、4路、7路、13路至"开元寺站"下车</li>
+                    <li>自驾：可停放在<span class="address-link" data-address="开元寺停车场" data-coords='{"lng": 118.592567, "lat": 24.908890}'>开元寺停车场</span></li>
+                </ul>
+
+                <h2>特别提示</h2>
+                <p>1. 寺院内禁止吸烟和大声喧哗</p>
+                <p>2. 参观时请着装整齐得体</p>
+                <p>3. 拍照时请注意遵守寺院规定</p>
+                <p>4. 建议避开正午时段参观，以免太热</p>
+            </div>
+
+            <div class="map-section">
+                <h2>到达这里</h2>
+                <div class="map-controls">
+                    <input type="text" id="start-location" class="location-input" placeholder="请输入起点位置">
+                    <button id="use-current-location" class="route-btn">使用当前位置</button>
+                    <div class="transport-options">
+                        <button class="transport-btn active" data-mode="driving">驾车</button>
+                        <button class="transport-btn" data-mode="transit">公交</button>
+                        <button class="transport-btn" data-mode="walking">步行</button>
+                        <button class="transport-btn" data-mode="riding">骑行</button>
+                    </div>
+                    <button id="plan-route" class="route-btn">规划路线</button>
+                </div>
+                <div id="map-container" class="map-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 泉州旅游指南</p>
+    </footer>
+
+    <script>
+        // 开元寺坐标
+        const destination = {
+            lng: 118.592345,
+            lat: 24.908765
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 初始化地图模块
+                if (!MapModule.init('map-container', destination, '泉州开元寺')) {
+                    console.error('地图初始化失败');
+                    alert('地图加载失败，请刷新页面重试');
+                    return;
+                }
+                
+                // 为所有地址链接添加点击事件
+                document.querySelectorAll('.address-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        try {
+                            const coords = JSON.parse(this.dataset.coords);
+                            const address = this.dataset.address;
+                            // 更新地图目的地
+                            if (!MapModule.updateDestination(coords, address)) {
+                                console.error('更新地图目的地失败');
+                                alert('更新目的地失败，请重试');
+                            }
+                        } catch (error) {
+                            console.error('处理地址点击事件错误:', error);
+                            alert('更新目的地时发生错误，请重试');
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('初始化错误:', error);
+                alert('地图功能初始化失败，请刷新页面重试');
+            }
+        });
+    </script>
+</body>
+</html> 
