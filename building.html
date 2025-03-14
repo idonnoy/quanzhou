@@ -18,6 +18,52 @@
         .address-link:hover {
             color: #003366;
         }
+        /* 标题区域样式 */
+        .title-section {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/culturepic/民居.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(30%) brightness(90%);
+            z-index: 1;
+        }
+
+        .title-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: 2;
+        }
+
+        .title-section h1 {
+            position: relative;
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: bold;
+            z-index: 3;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
         /* 导航栏样式 */
         header {
             background-color: #2196F3;
@@ -67,13 +113,14 @@
                 <li><a href="attractions.html">景点推荐</a></li>
                 <li><a href="culture.html">文化特色</a></li>
                 <li><a href="food.html">美食推荐</a></li>
-                <li><a href="travel.html">旅游攻略</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="culture-detail">
-        <h1>闽南民居营造技艺</h1>
+        <div class="title-section">
+            <h1>闽南民居营造技艺</h1>
+        </div>
         <div class="detail-content">
             <div class="detail-text">
                 <h2>文化介绍</h2>
@@ -197,4 +244,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

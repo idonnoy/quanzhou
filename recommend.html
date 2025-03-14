@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化推荐 - 泉州旅游</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .recommendation-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .recommendation-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .recommendation-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .recommendation-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .recommendation-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .recommendation-details {
+            padding: 1.5rem;
+        }
+
+        .recommendation-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-description {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .recommendation-tips {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .recommendation-tips h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendation-tips ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .recommendation-tips li {
+            margin-bottom: 0.5rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="attractions.html">必游景点</a></li>
+                <li><a href="culture.html">文化特色</a></li>
+                <li><a href="food.html">美食推荐</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="recommendation-container">
+        <div class="recommendation-header">
+            <h1 id="recommendTitle">为您推荐的行程</h1>
+            <p id="recommendDescription"></p>
+        </div>
+
+        <div class="recommendation-content" id="recommendContent"></div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>联系方式</h4>
+                <p>电话：0595-12345678</p>
+                <p>邮箱：tourism@quanzhou.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 泉州旅游网 版权所有</p>
+        </div>
+    </footer>
+
+    <script>
+        const recommendations = {
+            youth: {
+                title: "青少年互动体验之旅",
+                description: "专为12-18岁青少年设计的互动性强、寓教于乐的文化体验之旅",
+                items: [
+                    {
+                        title: "泉州提线木偶戏体验",
+                        image: "images/puppet.jpg",
+                        description: "亲手操作提线木偶，学习简单剧目表演，体验非遗魅力。在专业艺人指导下，了解木偶制作工艺，参与简单的木偶表演，感受传统艺术的魅力。活动全程约2小时，设有小型表演舞台和木偶制作工作坊。",
+                        tips: ["适合亲子互动", "提供专业指导", "可获得体验证书", "建议提前1天预约", "提供木偶表演服装体验", "设有休息区和拍照区"]
+                    },
+                    {
+                        title: "南音文化体验馆",
+                        image: "images/nanyin.jpg",
+                        description: "通过互动展示和多媒体设备，了解泉州南音的历史与魅力。设有VR体验区，可以虚拟演奏南音乐器。每天下午有南音小课堂，教授基础曲目。馆内还有南音服饰试穿区和乐器展示区。",
+                        tips: ["有趣的互动环节", "适合青少年学习", "配备专业讲解员", "可预约南音小课堂", "提供免费讲解服务", "设有文创商店"]
+                    },
+                    {
+                        title: "开元寺文化探索",
+                        image: "images/kaiyuansi.jpg",
+                        description: "参与开元寺'小小讲解员'活动，学习寺院历史文化。体验写经、抄经活动，了解佛教文化。设有专门的青少年文化体验区，可以参与拓片制作、建筑模型拼装等活动。",
+                        tips: ["提供青少年专属讲解", "互动性强", "设有休息区", "提供文化体验工具", "可获得体验证书"]
+                    }
+                ]
+            },
+            youngAdult: {
+                title: "青年深度文化探索之旅",
+                description: "为19-35岁年轻人打造的深度文化体验和自由探索之旅，结合文化、美食与摄影",
+                items: [
+                    {
+                        title: "西街文化探索",
+                        image: "images/xijie.jpg",
+                        description: "漫步千年古街，探访历史建筑，感受多元文化交融。街道两旁保留着众多明清时期的古建筑，融合了伊斯兰、基督教等多元文化元素。建议傍晚时分游览，可以体验古街的黄昏美景和夜市文化。",
+                        tips: ["建议徒步游览", "可自由拍照", "周边有特色小店", "推荐品尝地道小吃", "建议游览时间2-3小时", "可租赁复古服装拍照"]
+                    },
+                    {
+                        title: "九日山文化之旅",
+                        image: "images/jiurishan.jpg",
+                        description: "登高望远，探访古代海上丝绸之路的重要遗址。山顶设有观景平台，可俯瞰泉州古城全貌。沿途设有文化解说牌，介绍海上丝绸之路的历史。建议携带相机，捕捉日出日落的绝美景色。",
+                        tips: ["适合摄影", "建议早晨或傍晚游览", "需要适当体力", "提供导览地图", "设有休息驿站", "可预约专业摄影向导"]
+                    },
+                    {
+                        title: "清净寺文化体验",
+                        image: "images/qingjingsi.jpg",
+                        description: "参观中国现存最古老的伊斯兰教寺院，感受阿拉伯文化与中国传统建筑的完美融合。寺内设有文物展览馆，展示了泉州与阿拉伯世界的历史渊源。每周末有专题讲座，深入了解伊斯兰文化。",
+                        tips: ["提供多语种讲解", "可预约文化讲座", "设有Muslim祈祷室", "提供免费导览服务", "适合历史文化爱好者", "建议游览时间1.5小时"]
+                    }
+                ]
+            },
+            middleAge: {
+                title: "中年品质文化之旅",
+                description: "为36-59岁人群打造的注重品质与文化内涵的精致之旅，融合历史、艺术与养生元素",
+                items: [
+                    {
+                        title: "闽南传统建筑探访",
+                        image: "images/building.jpg",
+                        description: "深入了解闽南建筑特色，与工匠交流营造技艺。参观古厝群落，了解独特的闽南建筑风水布局。专业导师讲解闽南建筑的历史渊源和文化内涵，体验传统工艺制作。",
+                        tips: ["提供专业讲解", "适合拍照", "有休息区", "含精美茶点", "提供遮阳伞具", "可预约专场讲座"]
+                    },
+                    {
+                        title: "天后宫文化体验",
+                        image: "images/tianhougong.jpg",
+                        description: "感受妈祖文化，欣赏精美的古建筑艺术。参观国家级重点文物保护单位，了解海上丝绸之路的历史。每日有专场祈福活动，可以体验传统祭祀文化。设有精品茶室，品味闽南功夫茶。",
+                        tips: ["环境优雅", "文化气息浓厚", "适合全家游览", "提供中英文讲解", "设有休息茶室", "可预约专属导览"]
+                    },
+                    {
+                        title: "泉州古城慢生活体验",
+                        image: "images/cityview.jpg",
+                        description: "漫步古城，感受千年商都的历史积淀。参观老字号商铺，品尝传统美食，体验本地生活方式。可以预约传统手工艺体验，如漆器制作、香道体验等。",
+                        tips: ["提供精品导览", "含特色美食品鉴", "舒适步行节奏", "设有休息驿站", "提供伞具和饮用水", "可定制私人行程"]
+                    }
+                ]
+            },
+            elder: {
+                title: "老年休闲文化之旅",
+                description: "为60岁以上长者设计的轻松舒适的传统文化之旅，注重舒适度和安全性",
+                items: [
+                    {
+                        title: "梨园戏表演欣赏",
+                        image: "images/liyuanxi.png",
+                        description: "欣赏传统戏曲表演，感受古老剧种的魅力。特设老年观众区，配备舒适座椅和毛毯。演出前有专业人员讲解剧情，帮助理解戏曲内容。提供养生茶点，打造舒适观剧体验。",
+                        tips: ["座位舒适", "提供茶水", "有休息区", "配备医护人员", "提供老年人专属服务", "可预约轮椅"]
+                    },
+                    {
+                        title: "惠安女文化园",
+                        image: "images/huian.jpg",
+                        description: "了解惠安女文化，欣赏传统服饰展示。园区全程无障碍设计，配备休息长椅。提供电瓶观光车服务，轻松游览各个展区。可以参与简单的传统手工艺制作，感受非遗魅力。",
+                        tips: ["环境优美", "步行轻松", "有休息设施", "提供轮椅租借", "设有 MedicRoom", "配备专业陪护人员"]
+                    },
+                    {
+                        title: "开元寺祈福之旅",
+                        image: "images/kaiyuansi.jpg",
+                        description: "参访千年古刹，感受佛教文化的庄严与宁静。寺内设有专门的休息区和素斋堂，提供养生素食。可以参与简单的抄经活动，静心修养。全程有专业人员陪同，确保参访安全。",
+                        tips: ["全程平缓好走", "提供素斋", "设有休息区", "配备医护人员", "有专人陪同", "可预约无障碍设施"]
+                    }
+                ]
+            },
+            independent: {
+                title: "自由行个性化推荐",
+                description: "为喜欢自主安排行程的旅客提供的个性化推荐，包含详细的路线规划和实用建议",
+                items: [
+                    {
+                        title: "泉州古城文化游",
+                        image: "images/cityview.jpg",
+                        description: "自由探索泉州古城，感受千年文化底蕴。提供详细的电子导览地图，标注重要景点、美食、休息区等信息。推荐最佳游览路线和时间安排，包含景点开放时间、票价等实用信息。可以通过手机APP获取实时导航和语音讲解。",
+                        tips: ["提供详细电子地图", "推荐最佳游览时间", "交通便利", "含AR导览功能", "提供紧急联系服务", "可预约导游服务"]
+                    },
+                    {
+                        title: "美食文化探索",
+                        image: "images/food.png",
+                        description: "探索泉州地道美食，品尝传统小吃。提供详细的美食地图，包含各类特色餐厅和小吃店的位置、营业时间、价格区间等信息。特别标注了老字号店铺和网红打卡点，方便游客自由选择。",
+                        tips: ["提供美食地图", "含价格参考", "推荐用餐时间", "标注特色店铺", "可线上预订", "提供优惠券"]
+                    },
+                    {
+                        title: "摄影打卡攻略",
+                        image: "images/attractions.jpg",
+                        description: "为摄影爱好者准备的泉州景点打卡攻略。包含各个景点的最佳拍摄时间、角度建议，以及不同季节的光线变化等专业建议。标注了适合拍摄的隐藏景点和网红打卡点。",
+                        tips: ["最佳拍摄时间", "专业拍摄建议", "隐藏景点推荐", "季节光线提示", "可约摄影向导", "提供器材租赁"]
+                    }
+                ]
+            },
+            group: {
+                title: "跟团深度游",
+                description: "专业导游带队，精品小团出行，深度体验泉州文化精髓",
+                items: [
+                    {
+                        title: "【轻奢泉州】五日四晚精品团",
+                        image: "images/culture.jpg",
+                        description: "五日四晚连住五钻酒店，16人内精品小团，无购物无自费。行程覆盖泉州开元寺、西街、蟳埔渔村、洛伽寺、五店市、西沙湾等精华景点。专业导游全程陪同，品质出行体验泉州千年文化底蕴。\n\nDay1：抵达泉州，入住五钻酒店，可自由游览西湖公园。\nDay2：蟳埔渔村文化体验，宋元茶楼品茗听南音，游览开元寺、西街、泉府小西埕。\nDay3：探访五店市传统街区，祥芝渔港观海，游览洛伽寺，漫步十里黄金海岸。\nDay4：崇武古城明代石头城，惠女风情园文化体验。\nDay5：悠闲早餐后返程。",
+                        tips: [
+                            "含4晚五钻酒店住宿",
+                            "含4早3午餐",
+                            "含景点首道门票",
+                            "专业导游全程讲解",
+                            "16人内精品小团",
+                            "无购物无自费",
+                            "多地可选择高铁出发",
+                            "70岁以上需亲友陪同"
+                        ]
+                    }
+                ]
+            },
+            custom: {
+                title: "定制专属行程",
+                description: "根据您的兴趣和需求，量身定制专属旅游方案，打造独特的泉州文化之旅",
+                items: [
+                    {
+                        title: "私人定制文化之旅",
+                        image: "images/culture.jpg",
+                        description: "专业团队为您定制独特的泉州文化之旅。可根据您的兴趣爱好、时间安排、预算等个性化需求，量身打造专属行程。提供专车接送、专属导游、特色住宿等高端服务。可以根据需求安排特色体验活动，如传统工艺制作、非遗传承人面对面交流等。",
+                        tips: ["灵活行程", "专属服务", "尊享体验", "专车接送", "五星住宿", "VIP预约服务"]
+                    },
+                ]
+            }
+        };
+
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function loadRecommendations() {
+            const type = getUrlParameter('type');
+            const value = getUrlParameter('value');
+            const recommendation = recommendations[value];
+
+            if (recommendation) {
+                document.getElementById('recommendTitle').textContent = recommendation.title;
+                document.getElementById('recommendDescription').textContent = recommendation.description;
+
+                const content = document.getElementById('recommendContent');
+                content.innerHTML = recommendation.items.map(item => `
+                    <div class="recommendation-card">
+                        <img src="${item.image}" alt="${item.title}" class="recommendation-image">
+                        <div class="recommendation-details">
+                            <h3 class="recommendation-title">${item.title}</h3>
+                            <p class="recommendation-description">${item.description}</p>
+                            <div class="recommendation-tips">
+                                <h4>贴心提示</h4>
+                                <ul>
+                                    ${item.tips.map(tip => `<li>${tip}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        window.onload = loadRecommendations;
+    </script>
+</body>
+</html>

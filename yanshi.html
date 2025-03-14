@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鲤城 - 泉州</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            font-family: "KaiTi", "楷体", serif;
+            font-size: 180px;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .fish-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+
+        .fish {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: swim 8s ease-in-out infinite;
+        }
+
+        @keyframes swim {
+            0%, 100% {
+                transform: translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateX(10px) rotate(5deg);
+            }
+            75% {
+                transform: translateX(-10px) rotate(-5deg);
+            }
+        }
+
+        .fish-path {
+            fill: url(#fishGradient);
+            filter: url(#glow);
+        }
+
+        .city-character {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ripple {
+            position: absolute;
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 50%;
+            animation: rippleEffect 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.5;
+            }
+            100% {
+                width: 500px;
+                height: 500px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <div class="fish-container">
+                <img src="images/鱼.png" alt="金色鱼" class="fish" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <span class="city-character">城</span>
+        </div>
+        <div class="ripple"></div>
+    </div>
+
+    <script>
+        function createRipple() {
+            const container = document.querySelector('.container');
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            container.appendChild(ripple);
+
+            ripple.addEventListener('animationend', () => {
+                ripple.remove();
+            });
+        }
+
+        setInterval(createRipple, 4000);
+        createRipple();
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化推荐 - 泉州旅游</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .selection-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .selection-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .selection-groups {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .selection-group {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .group-title {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .selection-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-card h3 {
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        .option-card p {
+            margin: 0.5rem 0 0;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="attractions.html">必游景点</a></li>
+                <li><a href="culture.html">文化特色</a></li>
+                <li><a href="food.html">美食推荐</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="selection-container">
+            <div class="selection-title">
+                <h1>个性化旅游推荐</h1>
+                <p>请选择您的年龄段或旅游方式，我们将为您推荐最适合的旅游路线</p>
+            </div>
+
+            <div class="selection-groups">
+                <div class="selection-group">
+                    <h2 class="group-title">按年龄选择</h2>
+                    <div class="selection-options">
+                        <div class="option-card" onclick="location.href='recommend.html?type=age&value=youth'">
+                            <h3>青少年 (12-18岁)</h3>
+                            <p>互动性强，寓教于乐的体验之旅</p>
+                        </div>
+                        <div class="option-card" onclick="location.href='recommend.html?type=age&value=youngAdult'">
+                            <h3>青年 (19-35岁)</h3>
+                            <p>深度文化体验，自由探索之旅</p>
+                        </div>
+                        <div class="option-card" onclick="location.href='recommend.html?type=age&value=middleAge'">
+                            <h3>中年 (36-59岁)</h3>
+                            <p>品质文化，家庭亲子之旅</p>
+                        </div>
+                        <div class="option-card" onclick="location.href='recommend.html?type=age&value=elder'">
+                            <h3>老年 (60岁以上)</h3>
+                            <p>休闲漫游，传统经典之旅</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="selection-group">
+                    <h2 class="group-title">按旅游方式选择</h2>
+                    <div class="selection-options">
+                        <div class="option-card" onclick="location.href='recommend.html?type=style&value=independent'">
+                            <h3>自由行</h3>
+                            <p>灵活自主，个性化行程安排</p>
+                        </div>
+                        <div class="option-card" onclick="location.href='recommend.html?type=style&value=group'">
+                            <h3>跟团游</h3>
+                            <p>省心省力，一站式体验</p>
+                        </div>
+                        <div class="option-card" onclick="location.href='recommend.html?type=style&value=custom'">
+                            <h3>定制游</h3>
+                            <p>量身定制，专属旅游方案</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>联系方式</h4>
+                <p>电话：0595-12345678</p>
+                <p>邮箱：tourism@quanzhou.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 泉州旅游网 版权所有</p>
+        </div>
+    </footer>
+</body>
+</html>

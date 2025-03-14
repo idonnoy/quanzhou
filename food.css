@@ -1,0 +1,155 @@
+.food-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.food-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.food-grid {
+    display: grid;
+    gap: 40px;
+}
+
+.food-category {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.food-category h2 {
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-blue);
+}
+
+.food-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+}
+
+.food-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.food-item:hover {
+    transform: translateY(-5px);
+}
+
+.food-image {
+    width: 350px;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+    background: #f5f5f5;
+}
+
+.food-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.food-hover-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.food-image:hover .food-hover-info {
+    opacity: 1;
+}
+
+.food-hover-info h4 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.food-hover-info p {
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.food-item:hover .food-image img {
+    transform: scale(1.1);
+}
+
+.food-details {
+    padding: 15px;
+}
+
+.food-details h3 {
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.food-details p {
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.food-tags {
+    display: flex;
+    gap: 8px;
+}
+
+.food-tags span {
+    background: var(--primary-blue);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .food-content {
+        padding: 20px 10px;
+    }
+
+    .food-items {
+        grid-template-columns: 1fr;
+    }
+
+    .food-image {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .food-category {
+        padding: 15px;
+    }
+
+    .food-image {
+        width: 100%;
+        max-width: 300px;
+        height: 200px;
+    }
+
+    .food-details {
+        padding: 10px;
+    }
+}

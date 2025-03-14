@@ -14,38 +14,49 @@
                 <li><a href="index.html">首页</a></li>
                 <li><a href="attractions.html">必游景点</a></li>
                 <li><a href="culture.html">文化特色</a></li>
-                <li><a href="#food">美食推荐</a></li>
-                <li><a href="#guide">旅游攻略</a></li>
+                <li><a href="food.html">美食推荐</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h1>泉州旅游路线</h1>
+        <h1><img src="images/鲤城.png" alt="鲤城" style="height: 5em; vertical-align: middle; mix-blend-mode: multiply; filter: contrast(1.2) brightness(1.1); margin-right: 0.2em;">旅游路线</h1>
         <div class="travel-route">
-            <svg class="route-path" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid meet">
+            <svg class="route-path" viewBox="0 0 2000 800" preserveAspectRatio="xMidYMid meet">
                 <!-- 曲线路径 -->
-                <path class="route-line" d="M50,300 C300,150 400,250 600,200 S800,150 1150,450" />
+                <path class="route-line" d="M200,400 C400,300 600,500 800,400 S1100,450 1300,350 S1600,300 1800,250" />
                 
                 <!-- 景点标记点 -->
                 <g class="spot" data-spot="kaiyuansi" role="button" aria-label="开元寺">
-                    <circle cx="100" cy="230" r="60" />
-                    <image width="120" height="120" href="images/kaiyuansi.jpg" alt="开元寺图片" transform="translate(-60, -60)" x="100" y="230"/>
+                    <circle cx="200" cy="400" r="80" />
+                    <clipPath id="clip-circle-1">
+                        <circle cx="200" cy="400" r="80" />
+                    </clipPath>
+                    <image width="320" height="320" href="images/kaiyuansi.jpg" alt="开元寺图片" clip-path="url(#clip-circle-1)" preserveAspectRatio="xMidYMid slice" x="200" y="400"/>
                 </g>
                 
                 <g class="spot" data-spot="qingjingsi" role="button" aria-label="清净寺">
-                    <circle cx="350" cy="190" r="60" />
-                    <image width="120" height="120" href="images/qingjingsi.jpg" alt="清净寺图片" transform="translate(-60, -60)" x="350" y="190"/>
+                    <circle cx="800" cy="400" r="80" />
+                    <clipPath id="clip-circle-2">
+                        <circle cx="800" cy="400" r="80" />
+                    </clipPath>
+                    <image width="320" height="320" href="images/qingjingsi.jpg" alt="清净寺图片" clip-path="url(#clip-circle-2)" preserveAspectRatio="xMidYMid slice" x="800" y="400"/>
                 </g>
                 
                 <g class="spot" data-spot="tianhougong" role="button" aria-label="天后宫">
-                    <circle cx="650" cy="190" r="60" />
-                    <image width="120" height="120" href="images/tianhougong.jpg" alt="天后宫图片" transform="translate(-60, -60)" x="650" y="190"/>
+                    <circle cx="1300" cy="350" r="80" />
+                    <clipPath id="clip-circle-3">
+                        <circle cx="1300" cy="350" r="80" />
+                    </clipPath>
+                    <image width="320" height="320" href="images/tianhougong.jpg" alt="天后宫图片" clip-path="url(#clip-circle-3)" preserveAspectRatio="xMidYMid slice" x="1300" y="350"/>
                 </g>
                 
                 <g class="spot" data-spot="jiurishan" role="button" aria-label="九日山">
-                    <circle cx="900" cy="240" r="60" />
-                    <image width="120" height="120" href="images/jiurishan.jpg" alt="九日山图片" transform="translate(-60, -60)" x="900" y="240"/>
+                    <circle cx="1800" cy="250" r="80" />
+                    <clipPath id="clip-circle-4">
+                        <circle cx="1800" cy="250" r="80" />
+                    </clipPath>
+                    <image width="320" height="320" href="images/jiurishan.jpg" alt="九日山图片" clip-path="url(#clip-circle-4)" preserveAspectRatio="xMidYMid slice" x="1800" y="250"/>
                 </g>
             </svg>
             
@@ -62,7 +73,7 @@
             
             <div class="spot-details" id="tianhougong-details" role="dialog" aria-label="天后宫详情">
                 <h3>天后宫</h3>
-                <p>天后宫是祭祀海神妈祖的庙宇始建于宋庆元二年（1196年）。它见证了海洋贸易的繁荣,是妈祖信仰的重要传播中心</p>
+                <p>天后宫是祭祀海神妈祖的庙宇始建于宋庆元二年（1196年）。它制定了海洋贸易的繁荣,是妈祖信仰的重要传播中心</p>
             </div>
             
             <div class="spot-details" id="jiurishan-details" role="dialog" aria-label="九日山详情">
